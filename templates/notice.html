@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Notices</h2>
+<ul class="list-group">
+  {% for notice in notices %}
+  <li class="list-group-item">
+    <strong>{{ notice.title }}</strong> <small class="text-muted">({{ notice.date }})</small>
+    <p>{{ notice.content }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+           title="Please enter a valid email address (e.g., hacker@example.com)">
+  </div>
+
+  <div class="mb-3">
+    <label for="comment">Comment</label>
+    <textarea class="form-control" name="comment" rows="2" placeholder="Leave a short message (optional)"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="nationality">Nationality</label>
+    <select name="nationality" class="form-select" required>
+      <option value="" selected disabled>Select a country</option>
+      <option value="South Korea">South Korea</option>
+      <option value="United States">United States</option>
+      <option value="Germany">Germany</option>
+      <option value="Japan">Japan</option>
+      <option value="China">China</option>
+      <option value="India">India</option>
+      <option value="Brazil">Brazil</option>
+      <option value="France">France</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+{% endblock %}

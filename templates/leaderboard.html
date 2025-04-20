@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Leaderboard</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Username</th>
+      <th>Total Score</th>
+      <th>Last Solved Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in top_users %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.total_score }}</td>
+      <td>{{ user.last_solved_time }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

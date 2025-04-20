@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">🛠️ Admin Panel</h2>
+  <p><a href="/admin/users" class="btn btn-outline-info">Manage Users</a></p>
+
+  <!-- Section: Add New Challenge -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">Add New Wargame Challenge</div>
+    <div class="card-body">
+      <form method="POST" action="/admin/add_challenge">
+        <div class="mb-3">
+          <label for="title" class="form-label">Challenge Title</label>
+          <input type="text" class="form-control" name="title" id="title" required>
+        </div>
+        <div class="mb-3">
+          <label for="difficulty" class="form-label">Difficulty</label>
+          <select class="form-select" name="difficulty" id="difficulty" required>
+            <option value="">Select</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="score" class="form-label">Score</label>
+          <input type="number" class="form-control" name="score" id="score" required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Challenge</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Section: Add New Notice -->
+  <div class="card">
+    <div class="card-header bg-secondary text-white">Post a Notice</div>
+    <div class="card-body">
+      <form method="POST" action="/admin/add_notice">
+        <div class="mb-3">
+          <label for="notice_title" class="form-label">Notice Title</label>
+          <input type="text" class="form-control" name="title" id="notice_title" required>
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Notice Content</label>
+          <textarea class="form-control" name="content" id="content" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Post Notice</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

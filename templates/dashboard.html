@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Wargames Dashboard</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Challenge</th>
+      <th>Difficulty</th>
+      <th>Score</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for challenge in challenges %}
+    <tr>
+      <td>{{ challenge.title }}</td>
+      <td>{{ challenge.difficulty }}</td>
+      <td>{{ challenge.score }}</td>
+      <td>
+        {% if challenge.solved %}
+          ✅ Solved
+        {% else %}
+          <a href="/challenge/{{ challenge.id }}" class="btn btn-sm btn-primary">Attempt</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

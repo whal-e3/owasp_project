@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      <h4>{{ challenge.title }}</h4>
+    </div>
+    <div class="card-body">
+      <p><strong>Category:</strong> {{ challenge.category }}</p>
+      <p><strong>Difficulty:</strong> {{ challenge.difficulty }}</p>
+      <p><strong>Score:</strong> {{ challenge.score }}</p>
+      <hr>
+      <p><strong>Message:</strong></p>
+      <pre>{{ challenge.message }}</pre>
+
+      {% if already_solved %}
+        <div class="alert alert-success">✅ You have already solved this challenge.</div>
+      {% else %}
+        <form method="POST">
+          <div class="mb-3">
+            <label for="flag">Enter Flag:</label>
+            <input type="text" class="form-control" name="flag" placeholder="e.g. RF{you_got_it}" required>
+          </div>
+          <button class="btn btn-primary">Submit Flag</button>
+        </form>
+      {% endif %}
+      
+      <hr>
+      <h5>Top 5 Solvers</h5>
+      <ul class="list-group">
+        {% for solver in solvers %}
+          <li class="list-group-item">{{ solver.username }} <small class="text-muted">({{ solver.solved_at }})</small></li>
+        {% else %}
+          <li class="list-group-item">No one has solved it yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
