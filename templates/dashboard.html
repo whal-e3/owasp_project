@@ -12,12 +12,12 @@
   </thead>
   <tbody>
     {% for challenge in challenges %}
-    <tr>
+    <tr {% if challenge.id in solved_ids %}class="table-success"{% endif %}>
       <td>{{ challenge.title }}</td>
       <td>{{ challenge.difficulty }}</td>
       <td>{{ challenge.score }}</td>
       <td>
-        {% if challenge.solved %}
+        {% if challenge.id in solved_ids %}
           ✅ Solved
         {% else %}
           <a href="/challenge/{{ challenge.id }}" class="btn btn-sm btn-primary">Attempt</a>

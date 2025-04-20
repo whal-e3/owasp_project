@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2 class="mt-4">{{ post.title }}</h2>
+  <p><strong>by {{ post.username }}</strong> — <small>{{ post.created_at }}</small></p>
+  <p><strong>Challenge:</strong> {{ post.challenge_title or 'Others' }}</p>
+  <div class="mb-3">{{ post.content }}</div>
+  {% if post.filename %}
+    <p>📎 <strong>Attachment:</strong> <a href="/uploads/{{ post.filename }}">{{ post.filename }}</a></p>
+  {% endif %}
+  {% if session['user_id'] == post.user_id %}
+    <a href="/forum/{{ post.id }}/edit" class="btn btn-sm btn-outline-secondary">✏️ Edit This Question</a>
+  {% endif %}
+  <hr>
+  <h4>💬 Comments</h4>
+  {% for comment in comments %}
+    <div class="mb-2 p-2 border rounded bg-light">
+      <strong>{{ comment.username }}</strong> <small class="text-muted">{{ comment.created_at }}</small>
+      <div>{{ comment.content }}</div>
+    </div>
+  {% else %}
+    <p class="text-muted">No comments yet.</p>
+  {% endfor %}
+
+  {% if session['user_id'] %}
+    <form method="POST" class="mt-3">
+      <div class="mb-3">
+        <label for="comment">Add a comment:</label>
+        <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+      </div>
+      <button class="btn btn-secondary">Submit Comment</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

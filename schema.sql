@@ -40,6 +40,28 @@ CREATE TABLE solves (
   FOREIGN KEY(challenge_id) REFERENCES challenges(id)
 );
 
+CREATE TABLE posts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  title TEXT,
+  content TEXT,
+  filename TEXT,
+  challenge_id INTEGER,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(user_id) REFERENCES users(id),
+  FOREIGN KEY(challenge_id) REFERENCES challenges(id)
+);
+
+CREATE TABLE comments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER,
+  user_id INTEGER,
+  content TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(post_id) REFERENCES posts(id),
+  FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
 -- Preloaded Wargames
 INSERT INTO challenges (title, category, message, difficulty, score, flag) VALUES
 ('FM Band Eavesdropper', 'RF Eavesdropping', 'Capture and demodulate an FM signal carrying sensitive audio using SDR.', 'Easy', 100, 'RF{fm_audio_captured}'),
@@ -56,5 +78,6 @@ INSERT INTO challenges (title, category, message, difficulty, score, flag) VALUE
 -- Preloaded accounts (admin / user)
 INSERT INTO users (username, password, email, comment, nationality, score, ranking)
 VALUES 
-('admin', 'pbkdf2:sha256:600000$admin$e86c1d537e5f1e40d3d8b616e594859aaf67f7f44518de3e2a91f35f70f44da2', 'admin@hackers.com', 'Admin account', 'South Korea', 0, 0),
-('user', 'pbkdf2:sha256:600000$user$7f3a9a1a1ed2743be2934f1148a92a471d2a6b86bb13a32b4f822d384e008eda', 'user@hackers.com', 'Standard user account', 'United States', 0, 0);
+('admin', 'pbkdf2:sha256:260000$YVpBYeF8ejiYmeBm$f987afac24f7cc890359a0197b17dbb7fd159fb8d979418c1a04eeaeab81b4fb', 'admin@hackers.com', 'Admin account', 'South Korea', 0, 0),
+('user', 'pbkdf2:sha256:260000$3DhB6YBGl9hGCCJv$f34cffa4e96b7f4a79feaf89e3a988404a17258e8e0fb921b826d395ef4fcf9f', 'user@hackers.com', 'Standard user account', 'United States', 0, 0),
+('user2', 'pbkdf2:sha256:260000$qHlIDPvJ1UL77jWb$29bd95d2132b8aefaa1c10af602796fc6124b001ffaf21709452b5901f9aedcb', 'user2@hackers.com', 'Standard user account', 'United States', 0, 0);

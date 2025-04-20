@@ -6,6 +6,7 @@
     <tr>
       <th>Rank</th>
       <th>Username</th>
+      <th>Nationality</th>
       <th>Total Score</th>
       <th>Last Solved Time</th>
     </tr>
@@ -15,8 +16,9 @@
     <tr>
       <td>{{ loop.index }}</td>
       <td>{{ user.username }}</td>
-      <td>{{ user.total_score }}</td>
-      <td>{{ user.last_solved_time }}</td>
+      <td>{{ user.nationality or 'Unknown' }}</td>
+      <td>{{ user.total_score or 0 }}</td>
+      <td>{{ user.last_solved_time or '—' }}</td>
     </tr>
     {% endfor %}
   </tbody>

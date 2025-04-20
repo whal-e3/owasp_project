@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>📚 Community Questions</h2>
+  <a href="/forum/new" class="btn btn-primary mb-3">New Post</a>
+  {% for post in posts %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5><a href="/forum/{{ post.id }}">{{ post.title }}</a></h5>
+        <p><small>Challenge: {{ post.challenge_title or 'Others' }}</small></p>
+        <small>by {{ post.username }} | {{ post.created_at }}</small>
+        {% if session['user_id'] == post.user_id %}
+          <div class="mt-2">
+            <a href="/forum/{{ post.id }}/edit" class="btn btn-sm btn-outline-secondary">✏️ Edit</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <p>No questions yet. Be the first to ask!</p>
+  {% endfor %}
+</div>
+{% endblock %}

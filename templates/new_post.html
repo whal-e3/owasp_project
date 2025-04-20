@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2 class="mt-4">Ask a New Question</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" name="title" class="form-control" value="{{ post.title if post else '' }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="challenge_id" class="form-label">Related Challenge</label>
+      <select id="challenge_id" name="challenge_id" class="form-select">
+        <option value="">Others</option>
+        {% for challenge in challenges %}
+          <option value="{{ challenge.id }}" {% if post and post.challenge_id == challenge.id %}selected{% endif %}>{{ challenge.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea id="content" name="content" rows="5" class="form-control" required>{{ post.content if post else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="file" class="form-label">Attach Script File (.py, .txt, .zip)</label>
+      <input type="file" id="file" name="file" class="form-control">
+    </div>
+    <button class="btn btn-primary">{{ 'Update' if post else 'Submit' }} Question</button>
+  </form>
+</div>
+{% endblock %}
