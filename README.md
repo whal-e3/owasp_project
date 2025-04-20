@@ -1,6 +1,6 @@
 # Hackers_playground
 
-Hackers_playground is a lightweight, Flask-based web platform for hosting RF hacking wargames. It provides a secure environment for users to sign up, attempt RF-themed CTF challenges, and track their rankings.
+Hackers_playground is a Flask-based web application that provides a CTF-style platform for RF hacking wargames. It allows users to register, solve challenges, discuss problems, and compete on a real-time leaderboard — with admin controls for content and user management.
 
 ---
 
