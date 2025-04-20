@@ -31,7 +31,7 @@ def forum():
         ORDER BY posts.created_at DESC
     """)
     posts = cur.fetchall()
-    return render_template('forum.html', posts=posts)
+    return render_template('forum/forum.html', posts=posts)
 
 @forum_routes.route('/forum/<int:post_id>', methods=['GET', 'POST'])
 def view_post(post_id):
@@ -52,7 +52,7 @@ def view_post(post_id):
     post = cur.fetchone()
     cur.execute("SELECT c.*, u.username FROM comments c JOIN users u ON c.user_id = u.id WHERE c.post_id = ? ORDER BY c.created_at ASC", (post_id,))
     comments = cur.fetchall()
-    return render_template('post.html', post=post, comments=comments)
+    return render_template('forum/post.html', post=post, comments=comments)
 
 @forum_routes.route('/forum/new', methods=['GET', 'POST'])
 def new_post():
@@ -86,7 +86,7 @@ def new_post():
     cur.execute("SELECT id, title FROM challenges")
     challenges = cur.fetchall()
 
-    return render_template('new_post.html', post=None, challenges=challenges)
+    return render_template('forum/new_post.html', post=None, challenges=challenges)
 
 @forum_routes.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -139,4 +139,4 @@ def edit_post(post_id):
     cur.execute("SELECT id, title FROM challenges")
     challenges = cur.fetchall()
 
-    return render_template("new_post.html", post=post, challenges=challenges)
+    return render_template("forum/new_post.html", post=post, challenges=challenges)

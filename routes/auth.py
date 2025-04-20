@@ -30,7 +30,7 @@ def register():
             flash("Username already exists.")
         return redirect('/login')
 
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 @auth_routes.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,7 +51,7 @@ def login():
             flash("Invalid credentials.")
             return redirect('/login')
 
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 @auth_routes.route('/logout')
 def logout():
@@ -87,4 +87,4 @@ def profile():
 
     cur.execute("SELECT * FROM users WHERE id=?", (session['user_id'],))
     user = cur.fetchone()
-    return render_template('profile.html', user=user)
+    return render_template('user/profile.html', user=user)

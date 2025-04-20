@@ -26,7 +26,7 @@ def dashboard():
     challenges = cur.fetchall()
     cur.execute("SELECT challenge_id FROM solves WHERE user_id = ?", (session['user_id'],))
     solved_ids = {row['challenge_id'] for row in cur.fetchall()}
-    return render_template('dashboard.html', challenges=challenges, solved_ids=solved_ids)
+    return render_template('challenge/dashboard.html', challenges=challenges, solved_ids=solved_ids)
 
 @main_routes.route('/notices')
 def notices():
@@ -34,7 +34,7 @@ def notices():
     cur = conn.cursor()
     cur.execute("SELECT * FROM notices ORDER BY date DESC")
     notices = cur.fetchall()
-    return render_template('notice.html', notices=notices)
+    return render_template('notice/notice.html', notices=notices)
 
 @main_routes.route('/leaderboard')
 def leaderboard():
@@ -56,4 +56,4 @@ def leaderboard():
     for i, user in enumerate(top_users, start=1):
         cur.execute("UPDATE users SET ranking=? WHERE id=?", (i, user["id"]))
     conn.commit()
-    return render_template("leaderboard.html", top_users=top_users)
+    return render_template("leaderboard/leaderboard.html", top_users=top_users)

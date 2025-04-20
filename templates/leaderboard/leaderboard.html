@@ -14,7 +14,17 @@
   <tbody>
     {% for user in top_users %}
     <tr>
-      <td>{{ loop.index }}</td>
+      <td>
+        {% if loop.index == 1 %}
+          🥇
+        {% elif loop.index == 2 %}
+          🥈
+        {% elif loop.index == 3 %}
+          🥉
+        {% else %}
+          {{ loop.index }}
+        {% endif %}
+      </td>
       <td>{{ user.username }}</td>
       <td>{{ user.nationality or 'Unknown' }}</td>
       <td>{{ user.total_score or 0 }}</td>

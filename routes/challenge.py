@@ -52,4 +52,4 @@ def challenge(challenge_id):
         else:
             flash("❌ Incorrect flag.")
 
-    return render_template('challenge.html', challenge=challenge, already_solved=bool(already_solved), solvers=solvers)
+    return render_template('challenge/challenge.html', challenge=challenge, already_solved=bool(already_solved), solvers=solvers)

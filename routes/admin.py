@@ -16,7 +16,7 @@ def admin_panel():
     if not is_admin():
         flash("Access denied.")
         return redirect('/login')
-    return render_template('admin.html')
+    return render_template('admin/admin.html')
 
 @admin_routes.route('/admin/users')
 def admin_users():
@@ -28,7 +28,7 @@ def admin_users():
     cur = conn.cursor()
     cur.execute("SELECT id, username FROM users WHERE username != 'admin'")
     users = cur.fetchall()
-    return render_template('admin_users.html', users=users)
+    return render_template('admin/admin_users.html', users=users)
 
 @admin_routes.route('/admin/delete_user/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
