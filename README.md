@@ -32,3 +32,12 @@ Hackers_playground is a Flask-based web application that provides a CTF-style pl
 git clone https://github.com/yourusername/hackers_playground.git
 cd hackers_playground
 ```
+
+2. **Run the website**
+
+```bash
+# Testing
+./app.py
+
+# Deploy
+```

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask
 from routes.main import main_routes
 from routes.auth import auth_routes
